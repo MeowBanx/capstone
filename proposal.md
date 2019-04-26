@@ -16,6 +16,8 @@ Users will come to the webpage and be greeted with a space to submit their text 
 ## Data Model
 All texts a user submits will be stored in the database under their login. The database will store user names and passwords, emails, payment information, project names, and project texts. 
 
+https://docs.google.com/spreadsheets/d/1bDJ956b13gC4PTSY7xHPH6M0bIlg93zd5-JX4lA5j74/edit?usp=sharing
+
 ## Schedule
 1. Create a page where a user can submit text, it can be edited, and then it can be returned to the user
 2. Create login and give users individual pages showing their past and current projects
