@@ -1,0 +1,19 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}New Project Submission{% endblock %}
+
+{% block content %}
+
+<h1>New Project</h1>
+<form action="{% url 'brevisapp:new_project' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="proj_name" placeholder="Project name"/>
+  <input type="text" name="orig_text" placeholder="Paste your text here"/>
+  <input type="file" name="orig_file" placeholder="Upload your file here"/>
+  <input >
+  <a class="user_btn" id="register" href="{% url 'brevisapp:user_page' %}">Submit</a>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">Pricing</a>
+      <a href="#">FAQs</a>
+      <a href="#">Get a Quote</a>
+      <a href="#">Become an Editor</a>
+    </div>
+  </div>
+
+  <div class="banner">
+    <h1>Brevis Edits</h1>
+    <h4>Quick. Cheap. Brilliant.</h4>
+  </div>
+  <div class="login">
+    <a class="user_btn" id="join" href="{% url 'brevisapp:registration_page' %}">Join</a>
+    <a class="user_btn" id="login" href="{% url 'brevisapp:login_page' %}">Login</a>
+  </div>
+</div>
+<div class="info_boxes">
+  <h2 class="info_box_titles">Who we are</h2>
+    <p class="info_box_text">Text</p>
+</div>
+<div class="info_boxes">
+  <h2 class="info_box_titles">What we do</h2>
+    <p class="info_box_text">Text</p>
+</div>
+<div class="info_boxes">
+  <h2 class="info_box_titles">How it works</h2>
+    <p class="info_box_text">Text</p>
+</div>
+
+
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+  <!-- Full-width slides/quotes -->
+  <div class="testimonials">
+    <q>I love knowing that my business's social media posts have been professionally edited. It's one less thing for me to worry about!</q>
+    <p class="name">— Shannon L.</p>
+  </div>
+
+  <div class="testimonials">
+    <q>Brevis is the easiest part of my day as a restaurant owner. They've edited everything from my menu to the sign outside my door. They are as helpful and kind as they are fast, and I don't know what I would do without them.</q>
+    <p class="name">— Asher W.</p>
+  </div>
+
+  <div class="testimonials">
+    <q>I'm a writer, and I don't like to take time to edit when my creative juices are flowing. Brevis is an awesome option when I need help on the fly.</q>
+    <p class="name">— Keaton K.</p>
+  </div>
+
+  <!-- Dots/bullets/indicators -->
+  <div class="dot-container">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<h1>Login</h1>
+<form action="{% url 'brevisapp:login_user' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="username"/>
+  <input type="password" name="password" placeholder="password"/>
+  <a class="user_btn" href="{% url 'brevisapp:user_page' %}">Submit</a>
+</form>
+
+
+{% endblock %}
