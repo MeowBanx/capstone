@@ -10,8 +10,10 @@
   <input type="text" name="proj_name" placeholder="Project name"/>
   <input type="text" name="orig_text" placeholder="Paste your text here"/>
   <input type="file" name="orig_file" placeholder="Upload your file here"/>
-  <input >
-  <a class="user_btn" id="register" href="{% url 'brevisapp:user_page' %}">Submit</a>
+  <input type="text" name="description"/>
+  <input type="checkbox" id="project_turnaround" name="project_turnaround" value="llama"/>
+    <label for="project_turnaround">Rush?</label>
+  <button type="submit">Submit</button>
 </form>
 
 

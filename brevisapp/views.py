@@ -1,19 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ClientProfile, EditorProfile, EditingProject
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 def index(request):
     return render(request, 'brevisapp/index.html')
 
 def registration_page(request):
     return render(request, 'brevisapp/register.html')
-
-def login_page(request):
-    return render(request, 'brevisapp/login.html')
 
 def register_user(request):
     username = request.POST['username']
@@ -26,14 +24,21 @@ def register_user(request):
     user.last_name = last_name
     user.save()
     login(request, user)
+    ClientProfile.objects.create(user=user)
     return HttpResponseRedirect(reverse('brevisapp:user_page'))
 
 @login_required
 def user_page(request):
-    context = {
-    }
+    project_id = request.POST['project_id']
+    print(project_id)
+    # projects = get_object_or_404(EditingProject, pk=project_id)
+    # context = {
+    #     'projects': projects,
+    # }
     return render(request, 'brevisapp/user_page.html', context)
 
+def login_page(request):
+    return render(request, 'brevisapp/login.html')
 
 def login_user(request):
     username = request.POST['username']
@@ -44,15 +49,23 @@ def login_user(request):
         return HttpResponseRedirect(reverse('brevisapp:user_page'))
     return HttpResponseRedirect(reverse('brevisapp:login'))
 
-
+def submit(request):
+    return render(request, 'brevisapp/submit.html')
 
 def new_project(request):
-    user = User.objects.get(pk=user_id)
-    project.name = request.POST['proj_name']
-    orig_file = request.POST['orig_file']
-    orig_text = request.POST['orig_text']
-    description = request.POST['description']
-    submit_date = request.POST['submit_date']
+    client = request.user.client
+    editor = User.objects.get(username='admin').editor
+    proj_name = request.POST['proj_name']
+    project = EditingProject(project=proj_name)
+    project.orig_file = request.FILES.get('orig_file', None)
+    project.orig_text = request.POST['orig_text']
+    project.description = request.POST['description']
+    project.submit_date = timezone.now()
+    project.client = client
+    project.editor = editor
+    project.turnaround = 'project_turnaround' in request.POST
+    project.save()
+    return HttpResponseRedirect(reverse('brevisapp:user_page'))
 
 
 def logout_user(request):

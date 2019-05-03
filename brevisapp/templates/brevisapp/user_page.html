@@ -8,10 +8,9 @@
   <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="#">Pricing</a>
-      <a href="#">FAQs</a>
-      <a href="#">Get a Quote</a>
-      <a href="#">Become an Editor</a>
+      <a href="#">My Account</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Payment Info</a>
     </div>
   </div>
 
@@ -20,8 +19,13 @@
   </div>
 </div>
 <h1>Welcome {{ user }}</h1>
+<a href="{% url 'brevisapp:submit' %}">Start a New Project!</a>
 <div id="current">
   <h4>Current Projects</h4>
+    {% for project in projects %}
+      <p>{{project.text}}</p>
+    {% endfor %}
+  <h4>Past Projects</h4>
 
 </div>
 
