@@ -12,4 +12,7 @@ urlpatterns = [
     path('user_page/', views.user_page, name='user_page'),
     path('submit/', views.submit, name='submit'),
     path('new_project/', views.new_project, name='new_project'),
+    path('<int:project_id>/project_page/', views.project_page, name='project_page'),
+    path('to_edit/', views.to_edit, name='to_edit'),
+
 ]

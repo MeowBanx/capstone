@@ -23,10 +23,19 @@
 <div id="current">
   <h4>Current Projects</h4>
     {% for project in projects %}
-      <p>{{project.text}}</p>
+      {% if final_date == null %}
+        <a href="{% url 'brevisapp:project_page' project.id %}"">{{ project.name }}</a>
+      {% endif %}
     {% endfor %}
-  <h4>Past Projects</h4>
 
+</div>
+<div id="past">
+  <h4>Past Projects</h4>
+  {% for project in projects %}
+    {% if final_date != null %}
+      <a href="{% url 'brevisapp:project_page' project.id %}"">{{ project.name }}</a>
+    {% endif %}
+  {% endfor %}
 </div>
 
 

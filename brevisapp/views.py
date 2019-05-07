@@ -29,12 +29,10 @@ def register_user(request):
 
 @login_required
 def user_page(request):
-    project_id = request.POST['project_id']
-    print(project_id)
-    # projects = get_object_or_404(EditingProject, pk=project_id)
-    # context = {
-    #     'projects': projects,
-    # }
+    projects = request.user.client.projects.all()
+    context = {
+        'projects': projects,
+    }
     return render(request, 'brevisapp/user_page.html', context)
 
 def login_page(request):
@@ -56,7 +54,10 @@ def new_project(request):
     client = request.user.client
     editor = User.objects.get(username='admin').editor
     proj_name = request.POST['proj_name']
-    project = EditingProject(project=proj_name)
+    project = EditingProject(name=proj_name)
+    # print(request.FILES)
+    # print(request.POST)
+    # print('='*100)
     project.orig_file = request.FILES.get('orig_file', None)
     project.orig_text = request.POST['orig_text']
     project.description = request.POST['description']
@@ -67,6 +68,20 @@ def new_project(request):
     project.save()
     return HttpResponseRedirect(reverse('brevisapp:user_page'))
 
+
+def project_page(request, project_id):
+    project = get_object_or_404(EditingProject, pk=project_id)
+    context = {
+        'project': project
+    }
+    return render(request, 'brevisapp/project_page.html', context)
+
+def to_edit(request):
+    projects = EditingProject.objects.order_by('submit_date')
+    context = {
+        'projects': projects
+    }
+    return render(request, 'brevisapp/to_edit.html', context)
 
 def logout_user(request):
     logout(request)

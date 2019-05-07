@@ -1,0 +1,23 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<h4>{{ project.name }}</h4>
+<p>Client: {{ project.client }}</p>
+<p>Editor: {{ project.editor }}</p>
+<p>Submitted text: {{ project.orig_text }}</p>
+<span>Original file: </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+<p>Description: {{ project.description }}</p>
+<p>Rush? {{ project.turnaround }}</p>
+<p>Date submitted: {{ project.submit_date }}</p>
+<p>Edited text: {{ project.edit_text }}</p>
+<span>Edited file: </span><a href="{{ edit_file.url }}">{{project.name}}</a>
+<p>Date edited: {{ project.edit_date }}</p>
+<p>Date finalized: {{ project.final_date }}</p>
+
+<a href="{% url 'brevisapp:user_page' %}">Home</a>
+
+{% endblock %}

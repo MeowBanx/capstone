@@ -39,7 +39,7 @@ class EditorProfile(models.Model):
 class EditingProject(models.Model):
     client = models.ForeignKey(ClientProfile, on_delete=models.CASCADE, related_name='projects')
     editor = models.ForeignKey(EditorProfile, on_delete=models.CASCADE, related_name='projects')
-    project = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True)
     orig_file = models.FileField(upload_to='textfile/', null=True, blank=True)
     orig_text = models.TextField(default='')
     description = models.CharField(max_length=500)
@@ -51,4 +51,10 @@ class EditingProject(models.Model):
     final_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.client.user.username + ' - ' + self.project
+        return self.client.user.username + ' - ' + self.name
+
+    def turnaround_time(self):
+        if self.turnaround == False:
+            return "No"
+        else:
+            return "Yes"

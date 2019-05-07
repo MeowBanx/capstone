@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1>New Project</h1>
-<form action="{% url 'brevisapp:new_project' %}" method="post">
+<form action="{% url 'brevisapp:new_project' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <input type="text" name="proj_name" placeholder="Project name"/>
   <input type="text" name="orig_text" placeholder="Paste your text here"/>
