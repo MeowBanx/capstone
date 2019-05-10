@@ -6,8 +6,9 @@
 
 {% for project in projects %}
     {% if final_date == null %}
-        <div>
-          <a href="{% url 'brevisapp:project_page' project.id %}"">{{ project.name }}</a>
+        <div class="project-list">
+          <a href="{% url 'brevisapp:edit_project' project.id %}">{{ project.name }}</a><br/>
+          <span>Due date: {{ project.due_date_str }}</span>
         </div>
     {% endif %}
 {% endfor %}

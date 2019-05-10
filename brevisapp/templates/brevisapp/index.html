@@ -7,33 +7,30 @@
   <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="#">Pricing</a>
+      <a href="{% url 'brevisapp:get_a_quote' %}">Pricing</a>
       <a href="#">FAQs</a>
-      <a href="#">Get a Quote</a>
+      <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote</a>
       <a href="#">Become an Editor</a>
     </div>
   </div>
 
-  <div class="banner">
-    <h1 class="company_name">Brevis Edits</h1>
-    <h4 class="slogan">Quick. Cheap. Brilliant.</h4>
-  </div>
+
   <div class="login">
-    <a class="user_btn" id="join" href="{% url 'brevisapp:registration_page' %}">Join</a>
-    <a class="user_btn" id="login" href="{% url 'brevisapp:login_page' %}">Login</a>
+    <a class="user-btn" id="join" href="{% url 'brevisapp:registration_page' %}">Join</a>
+    <a class="user-btn" id="login" href="{% url 'brevisapp:login_page' %}">Login</a>
   </div>
 </div>
-<div class="info_boxes">
-  <h2 class="info_box_titles">Who we are</h2>
-    <p class="info_box_text">Text</p>
+<div class="info-boxes">
+  <h2 class="info-box_titles">Who we are</h2>
+    <p class="info-box_text">Text</p>
 </div>
-<div class="info_boxes">
-  <h2 class="info_box_titles">What we do</h2>
-    <p class="info_box_text">Text</p>
+<div class="info-boxes">
+  <h2 class="info-box_titles">What we do</h2>
+    <p class="info-box_text">Text</p>
 </div>
-<div class="info_boxes">
-  <h2 class="info_box_titles">How it works</h2>
-    <p class="info_box_text">Text</p>
+<div class="info-boxes">
+  <h2 class="info-box_titles">How it works</h2>
+    <p class="info-box_text">Text</p>
 </div>
 
 

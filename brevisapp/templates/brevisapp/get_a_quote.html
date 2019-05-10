@@ -1,0 +1,40 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}<h2>Pricing</h2>{% endblock %}
+
+{% block content %}
+
+<h4>How it works</h4>
+  <p>Prices are set per word. Rush projects (4-hour turnaround) are charged at 4¢ per word. Regular projects (48-hour turnaround) are charged at 2¢ per word.</p>
+
+  <h4>Get a quote</h4>
+    <label for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
+    <input type="text" id="text_for_quote" size="50"/><br/>
+    <p class="smaller-text">Please note that this quote is not binding and may change based on turnaround time and word count upon project submission.</p>
+    <button id="submitbtn">Submit</button><br/><br/>
+    <div id="output"></div>
+
+  <script type="text/javascript">
+
+    let text_for_quote = document.querySelector('#text_for_quote')
+    let output = document.querySelector('#output')
+    let submitbtn = document.querySelector('#submitbtn')
+
+    function countWords(user_text) {
+      return user_text.trim().split(/\s+/).length;
+    }
+
+    submitbtn.onclick = function() {
+      let regular_cost = countWords(text_for_quote.value)*0.02
+      let rush_cost = countWords(text_for_quote.value)*0.04
+      output.innerText = "Regular cost: " + regular_cost + '\n' + "Rush cost: " + rush_cost
+    }
+
+
+  </script>
+
+  <a href="{% url 'brevisapp:user_page'%}">Home</a>
+</body>
+
+
+{% endblock %}

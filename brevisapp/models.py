@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
 
 class ClientProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='client')
@@ -49,9 +50,18 @@ class EditingProject(models.Model):
     edit_text = models.TextField(null=True, blank=True)
     edit_date = models.DateTimeField(null=True, blank=True)
     final_date = models.DateTimeField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.client.user.username + ' - ' + self.name
+
+    def due_date_str(self):
+        if self.turnaround == False:
+            two_days = datetime.timedelta(days=2)
+            return self.submit_date + two_days
+        else:
+            four_hours = datetime.timedelta(hours=4)
+            return self.submit_date + four_hours
 
     def turnaround_time(self):
         if self.turnaround == False:

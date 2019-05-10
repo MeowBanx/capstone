@@ -1,19 +1,43 @@
-body {
+/*======================all pages=================================*/
+/*general font*/
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
 }
+/*base page banner*/
+.banner {
+  height: 20%;
+  width: 100%;
+  background-color: #B01C0C;
+  margin: 0;
+  padding: 0;
+}
 
-.company_name {
+.company-name {
   margin: 0px;
+  padding-top: 10px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 4em;
+  text-align: center;
+  color: white;
 }
 
 .slogan {
-  margin-top: -10px;
+  margin-top: 0px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5em;
   text-align: center;
+  color: black;
 }
+
+hr {
+  margin: 0px;
+  color: white;
+  width: 2px;
+}
+
+
 /*=================index=======================================================*/
 
 .topnav {
@@ -21,33 +45,64 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: aliceblue;
+  background-color: #E75343;
+  margin: 0;
+  padding: 0;
 }
 
 /*join and login buttons*/
-.user_btn {
+.user-btn {
 	font-size:15px;
-	background-color:aliceblue;
-	padding:15px;
+	background-color: #E75343;
+	padding: 5px 15px 5px 15px;
+  margin-right: 10px;
 	border-radius: 20px;
 	transition: 1.5s;
-  border: solid 3px blue;
+  border: solid 3px white;
   text-decoration: none;
+  color: black;
+  font-family: 'Lobster', cursive;
+  font-size: 25px;
 }
 
-.user_btn:hover {
-		box-shadow: inset 0 0 0 5px blue;
+.user-btn:hover, .project_btn:hover {
+		box-shadow: inset 0 0 0 5px #E75343;
     border: solid 3px #fff;
 }
 
+.project_btn {
+  font-size:1em;
+	padding: 10px 20px 10px 20px;
+  margin: 10px;
+	border-radius: 20px;
+	transition: 1.5s;
+  border: solid 3px black;
+  text-decoration: none;
+  color: black;
+}
 
-/* dropdown menu */
+a {
+  text-decoration: none;
+  color: red;
+}
+
+.project_btns {
+  display: flex;
+}
+.info-box-titles {
+  font-family: 'Lobster', cursive;
+  font-size: 3em;
+}
+
+
+/*====================== dropdown menu============================================ */
 .dropbtn {
-  background-color: aliceblue;
-  color: blue;
   padding: 16px;
-  font-size: 25px;
+  font-size: 30px;
   border: none;
+  font-family: 'Lobster', cursive;
+  background-color: #E75343;
+  letter-spacing: 0.1em;
 }
 
 .dropdown {
@@ -81,16 +136,13 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: blue;
+  background-color: #B8B6BC;
   transition: 1s;
   transition-timing-function: ease;
-
 }
 
-.info_box_titles {
-  font-family: 'Lobster', cursive;
-  font-size: 3em;
-}
+
+
 
 
 /* Slideshow container for testimonials */
@@ -141,4 +193,34 @@ q {
   font-family: 'Fahkwang', sans-serif;
   font-style: italic;
   font-size: 1em;
+}
+
+/*===============submit and to edit pages===============================*/
+.form-element, .project-list {
+  margin: 20px;
+}
+
+#description, #orig-text {
+
+}
+
+input {
+  width: 50%;
+}
+
+h2, h4, form, input, label, button, a {
+  margin-left: 20px;
+}
+
+.smaller-text {
+    font-size: 10px;
+}
+
+p {
+  margin: 10px 20px 10px 20px;
+
+}
+
+.form {
+  margin-top: 50px;
 }

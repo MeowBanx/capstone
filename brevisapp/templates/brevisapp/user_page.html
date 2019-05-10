@@ -13,18 +13,22 @@
       <a href="#">Payment Info</a>
     </div>
   </div>
+</div>
 
-  <div class="banner">
-    <h1>Brevis Edits</h1>
+<h1>Welcome {{ user }}</h1>
+<div class="project_btns">
+  <div class="project_btn">
+    <a href="{% url 'brevisapp:submit' %}">Start a New Project!</a>
+  </div>
+  <div class="project_btn">
+    <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote!</a>
   </div>
 </div>
-<h1>Welcome {{ user }}</h1>
-<a href="{% url 'brevisapp:submit' %}">Start a New Project!</a>
 <div id="current">
   <h4>Current Projects</h4>
     {% for project in projects %}
       {% if final_date == null %}
-        <a href="{% url 'brevisapp:project_page' project.id %}"">{{ project.name }}</a>
+        <a href="{% url 'brevisapp:client_project' project.id %}"">{{ project.name }}</a>
       {% endif %}
     {% endfor %}
 
@@ -32,12 +36,14 @@
 <div id="past">
   <h4>Past Projects</h4>
   {% for project in projects %}
-    {% if final_date != null %}
-      <a href="{% url 'brevisapp:project_page' project.id %}"">{{ project.name }}</a>
+    {% if final_date is not None %}
+      <a href="{% url 'brevisapp:client_project' project.id %}"">{{ project.name }}</a>
     {% endif %}
   {% endfor %}
 </div>
-
+{% if user.editor %}
+  <a href="{% url 'brevisapp:to_edit' %}"">Available editing projects</a>
+{% endif %}
 
 
 

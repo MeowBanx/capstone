@@ -124,7 +124,7 @@ STATICFILES_DIRS = [
     '/static/',
 ]
 
-LOGIN_URL = '/login_page/'
+LOGIN_URL = 'login_page/'
 
 MEDIA_URL = '/uploaded_files/'
 

@@ -1,0 +1,36 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block title %}
+<h4>{{ project.name }}</h4>
+{% if final_date == null %}
+  <p>Due: {{ project.due_date_str }}</p>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if project.orig_text %}
+  <p>Submitted text: {{ project.orig_text }}</p>
+{% endif %}
+{% if project.orig_file %}
+  <span>Original file: </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+{% endif %}
+<p>Description: {{ project.description }}</p>
+<p>Rush? {{ project.turnaround_time }}</p>
+<p>Date submitted: {{ project.submit_date }}</p>
+{% if project.edit_text %}
+  <p>Edited text: {{ project.edit_text }}</p>
+{% endif %}
+{% if project.edit_file %}
+  <span>Edited file: </span>
+  <a href="{{ project.edit_file.url }}">{{project.name}}</a>
+{% endif %}
+{% if project.edit_date %}
+  <p>Date edited: {{ project.edit_date }}</p>
+{% endif %}
+{% if project.final_date %}
+  <p>Date finalized: {{ project.final_date }}</p>
+{% endif %}
+
+<a href="{% url 'brevisapp:user_page' %}">Home</a>
+
+{% endblock %}
