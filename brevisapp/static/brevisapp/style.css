@@ -25,7 +25,7 @@ body, html {
 }
 
 .slogan {
-  margin-top: 0px;
+  margin: 0px 0px 30px 0px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5em;
   text-align: center;
@@ -39,17 +39,19 @@ hr {
 }
 
 /*links on all pages*/
+
+h1, h2, h4, form, input, label, button, #output, .project-list, .left_margin {
+  margin-left: 20px;
+}
+
 a {
   text-decoration: none;
   color: red;
 }
 
-input {
-  width: 50%;
-}
 
-h2, h4, form, input, label, button, a {
-  margin-left: 20px;
+a:hover {
+  opacity: 0.5;
 }
 
 .smaller-text {
@@ -61,8 +63,60 @@ p {
 
 }
 
-.form {
+form {
   margin-top: 50px;
+  width: 100%;
+}
+
+label {
+  margin: 0px;
+}
+
+#proj_name {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.basic-btn {
+  font-size:20px;
+  background-color:#fff;
+  padding:10px;
+  color:#333;
+  border-radius: 10px;
+  transition: 1s;
+  width: auto;
+  margin: 20px 0px 0px 20px;
+}
+
+.basic-btn:hover {
+  opacity: 0.5;
+}
+
+.submission-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.basic-input {
+  width: 30%;
+  margin: 10px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  height: auto;
+}
+
+footer {
+  width: 100%;
+  background-color: #B01C0C;
+  margin: 0px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  height: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
 }
 /*=================index=======================================================*/
 
@@ -96,6 +150,8 @@ p {
     border: solid 3px #fff;
 }
 
+
+
 .project_btn {
   font-size:1em;
 	padding: 10px 20px 10px 20px;
@@ -109,13 +165,16 @@ p {
 
 .project_btns {
   display: flex;
+  justify-content: space-around;
 }
 
 /*info boxes on index*/
 
-.info-box-title-r, .info-box-title-l {
+.info-box-title-r, .info-box-title-l, h4 {
   font-family: 'Lobster', cursive;
   font-size: 2.75em;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
 .info-box-title-r {
@@ -163,7 +222,7 @@ p {
 
 }
 
-#pointer1:before, #pointer3:before {
+#pointer1:before {
   content: "";
   position: absolute;
   right: -80px;
@@ -177,7 +236,16 @@ p {
 }
 
 #pointer3:before {
+  content: "";
+  position: absolute;
+  right: -80px;
+  bottom: 0;
+  width: 0;
+  height: 0;
   border-left: 80px solid #B01C0C;
+  border-top: 80px solid transparent;
+  border-bottom: 80px solid transparent;
+  margin: auto;
 }
 
 #pointer2:after {
@@ -227,6 +295,7 @@ p {
   font-family: 'Lobster', cursive;
   background-color: black;
   color: white;
+  margin-right: 20px;
 }
 
 .dropdown {
@@ -279,8 +348,10 @@ p {
   display: none;
   padding: 80px;
   text-align: center;
-  background-color: aliceblue;
-  transition: 0.6s ease;
+  background-color: black;
+  color: white;
+  transition: 1s ease;
+  height: 20%;
 }
 
 .name {
@@ -312,41 +383,29 @@ p {
   background-color: #717171;
 }
 
+
+
+
 /* Add an italic font style to all quotes */
-.quotes {
+q {
   font-family: 'Fahkwang', sans-serif;
   font-style: italic;
+  font-size: 1em;
+  width: 75%
 }
 
-.talkbubble {
-    width: 70%;
-    height: 150px;
-    background: grey;
-    position: relative;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    margin: auto;
-  }
 
-  .talkbubble:before {
-    content: "";
-    position: absolute;
-    right: 100%;
-    top: 26px;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-right: 50px solid grey;
-    border-bottom: 25px solid transparent;
-    margin: auto;
-  }
-
-/*===============submit and to edit pages===============================*/
-.form-element, .project-list {
-  margin: 20px;
+.form-element {
+  margin-top: 10px;
 }
 
-#description, #orig-text {
 
+.project_lists {
+  display: flex;
+  justify-content: space-around;
+}
+
+.black_hr {
+  width: 2px;
+  color: black;
 }

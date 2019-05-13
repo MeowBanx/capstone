@@ -13,9 +13,15 @@
       <a href="#">Payment Info</a>
     </div>
   </div>
+  <a class="dropbtn" href="{% url 'brevisapp:index'%}">Home</a>
 </div>
 
 <h1>Welcome {{ user }}</h1>
+
+<br/>
+<br/>
+<hr class="black_hr"/>
+
 <div class="project_btns">
   <div class="project_btn">
     <a href="{% url 'brevisapp:submit' %}">Start a New Project!</a>
@@ -23,27 +29,37 @@
   <div class="project_btn">
     <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote!</a>
   </div>
+  <div class="project_btn">
+  {% if user.editor %}
+    <a href="{% url 'brevisapp:to_edit' %}">Editing Projects</a>
+  {% endif %}
+  </div>
 </div>
-<div id="current">
-  <h4>Current Projects</h4>
+<br/>
+<br/>
+<hr class="black_hr"/>
+<div class="project_lists">
+  <div id="current">
+    <h4>Current Projects</h4>
+      {% for project in projects %}
+        {% if not project.final_date %}
+          <a class="left_margin" href="{% url 'brevisapp:client_project' project.id %}">{{ project.name }}</a>
+          {% if project.edit_date %}
+            <span>Your project has been edited.</span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+  </div>
+  <div id="past">
+    <h4>Past Projects</h4>
     {% for project in projects %}
-      {% if final_date == null %}
-        <a href="{% url 'brevisapp:client_project' project.id %}"">{{ project.name }}</a>
+      {% if project.final_date %}
+        <a class="left_margin" href="{% url 'brevisapp:client_project' project.id %}">{{ project.name }}</a>
       {% endif %}
     {% endfor %}
-
+  </div>
 </div>
-<div id="past">
-  <h4>Past Projects</h4>
-  {% for project in projects %}
-    {% if final_date is not None %}
-      <a href="{% url 'brevisapp:client_project' project.id %}"">{{ project.name }}</a>
-    {% endif %}
-  {% endfor %}
-</div>
-{% if user.editor %}
-  <a href="{% url 'brevisapp:to_edit' %}"">Available editing projects</a>
-{% endif %}
 
 
 

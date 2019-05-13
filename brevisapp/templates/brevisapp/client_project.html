@@ -26,6 +26,11 @@
 {% endif %}
 {% if project.edit_date %}
   <p>Date edited: {{ project.edit_date }}</p>
+  {% if not project.final_date %}
+    <form action="{% url 'brevisapp:approve_edit' project.id %}" method="post">
+      {% csrf_token %}
+      <button class="basic-btn" type="submit">Approve Edits</button>
+  {% endif %}
 {% endif %}
 {% if project.final_date %}
   <p>Date finalized: {{ project.final_date }}</p>

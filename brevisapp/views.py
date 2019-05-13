@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.core.mail import send_mail
 
 def index(request):
     return render(request, 'brevisapp/index.html')
@@ -101,6 +102,11 @@ def submit_edit(request, project_id):
     project.save()
     return HttpResponseRedirect(reverse('brevisapp:to_edit'))
 
+def approve_edit(request, project_id):
+    project = get_object_or_404(EditingProject, pk=project_id)
+    project.final_date = timezone.now()
+    project.save()
+    return HttpResponseRedirect(reverse('brevisapp:user_page'))
 
 def logout_user(request):
     logout(request)

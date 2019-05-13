@@ -8,11 +8,12 @@
   <p>Prices are set per word. Rush projects (4-hour turnaround) are charged at 4¢ per word. Regular projects (48-hour turnaround) are charged at 2¢ per word.</p>
 
   <h4>Get a quote</h4>
-    <label for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
-    <input type="text" id="text_for_quote" size="50"/><br/>
+    <label class="left_margin" for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
+    <textarea class="left_margin" type="text" id="text_for_quote" rows="15" cols="100%"/></textarea><br/>
     <p class="smaller-text">Please note that this quote is not binding and may change based on turnaround time and word count upon project submission.</p>
-    <button id="submitbtn">Submit</button><br/><br/>
-    <div id="output"></div>
+    <button class="basic-btn" id="submitbtn">Submit</button><br/><br/>
+    <div id="output">
+    <span>Regular cost: <br/>Rush cost:</span></div>
 
   <script type="text/javascript">
 
@@ -32,8 +33,10 @@
 
 
   </script>
+  <br/>
+  <br/>
 
-  <a href="{% url 'brevisapp:user_page'%}">Home</a>
+  <a class="to-edit" href="{% url 'brevisapp:user_page'%}">Home</a>
 </body>
 
 

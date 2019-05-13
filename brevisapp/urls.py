@@ -17,4 +17,5 @@ urlpatterns = [
     path('<int:project_id>/edit_project/', views.edit_project, name='edit_project'),
     path('<int:project_id>/submit_edit/', views.submit_edit, name='submit_edit'),
     path('get_a_quote/', views.get_a_quote, name='get_a_quote'),
+    path('<int:project_id>/approve_edit/', views.approve_edit, name='approve_edit'),
 ]
