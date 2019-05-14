@@ -1,13 +1,29 @@
 {% extends 'brevisapp/base.html' %}
 
-{% block title %}<h2>Pricing</h2>{% endblock %}
-
 {% block content %}
 
-<h4>How it works</h4>
+
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">My Account</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Payment Info</a>
+    </div>
+  </div>
+  <div class="home_logout">
+    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
+    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+  </div>
+</div>
+
+<h4>Pricing</h4>
+
+<h2>How it works</h2>
   <p>Prices are set per word. Rush projects (4-hour turnaround) are charged at 4¢ per word. Regular projects (48-hour turnaround) are charged at 2¢ per word.</p>
 
-  <h4>Get a quote</h4>
+  <h2>Get a quote</h2>
     <label class="left_margin" for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
     <textarea class="left_margin" type="text" id="text_for_quote" rows="15" cols="100%"/></textarea><br/>
     <p class="smaller-text">Please note that this quote is not binding and may change based on turnaround time and word count upon project submission.</p>
@@ -36,7 +52,6 @@
   <br/>
   <br/>
 
-  <a class="to-edit" href="{% url 'brevisapp:user_page'%}">Home</a>
 </body>
 
 

@@ -1,41 +1,57 @@
 {% extends 'brevisapp/base.html' %}
 
-{% block title %}
-<h4>{{ project.name }}</h4>
-{% if final_date == null %}
-  <p>Due: {{ project.due_date_str }}</p>
-{% endif %}
-{% endblock %}
-
 {% block content %}
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">My Account</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Payment Info</a>
+    </div>
+  </div>
+  <div class="home_logout">
+    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
+    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+  </div>
+</div>
+
+<h2>{{ project.name }}</h2>
+{% if final_date == null %}
+  <p><b>Due:</b> {{ project.due_date_str }}</p>
+{% endif %}
+
 {% if project.orig_text %}
-  <p>Submitted text: {{ project.orig_text }}</p>
+  <p><b>Submitted text:</b> {{ project.orig_text }}</p>
 {% endif %}
 {% if project.orig_file %}
-  <span>Original file: </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+  <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
 {% endif %}
-<p>Description: {{ project.description }}</p>
-<p>Rush? {{ project.turnaround_time }}</p>
-<p>Date submitted: {{ project.submit_date }}</p>
+<p><b>Description:</b> {{ project.description }}</p>
+<p><b>Rush?</b> {{ project.turnaround_time }}</p>
+<p><b>Date submitted:</b> {{ project.submit_date }}</p>
 {% if project.edit_text %}
-  <p>Edited text: {{ project.edit_text }}</p>
+  <p><b>Edited text:</b> {{ project.edit_text }}</p>
 {% endif %}
 {% if project.edit_file %}
-  <span>Edited file: </span>
+
+
+  <span><b>Edited file:</b> </span>
   <a href="{{ project.edit_file.url }}">{{project.name}}</a>
 {% endif %}
 {% if project.edit_date %}
-  <p>Date edited: {{ project.edit_date }}</p>
+  <p><b>Date edited:</b> {{ project.edit_date }}</p>
   {% if not project.final_date %}
     <form action="{% url 'brevisapp:approve_edit' project.id %}" method="post">
       {% csrf_token %}
       <button class="basic-btn" type="submit">Approve Edits</button>
+    <label class="left_margin" for="question_for_editor">Want to ask a question or request a change? Please provide as much detail as possible for your editor below.</label><br/>
+    <textarea class="left_margin" type="text" id="question_for_editor" rows="15" cols="100%"/></textarea><br/>
+    <button id="ask_the_editor" class="basic-btn" type="submit">Ask a question or Request a Change</button>
+    <p id="confirm"></p>
   {% endif %}
 {% endif %}
 {% if project.final_date %}
-  <p>Date finalized: {{ project.final_date }}</p>
+  <p><b>Date finalized:</b> {{ project.final_date }}</p>
 {% endif %}
-
-<a href="{% url 'brevisapp:user_page' %}">Home</a>
-
 {% endblock %}

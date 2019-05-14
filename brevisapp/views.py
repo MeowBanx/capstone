@@ -30,9 +30,11 @@ def register_user(request):
 
 @login_required
 def user_page(request):
-    projects = request.user.client.projects.all()
+    current_projects = EditingProject.objects.filter(final_date__isnull=True).order_by('submit_date')
+    past_projects = EditingProject.objects.filter(final_date__isnull=False).order_by('submit_date')
     context = {
-        'projects': projects,
+        'current_projects': current_projects,
+        'past_projects': past_projects,
     }
     return render(request, 'brevisapp/user_page.html', context)
 
@@ -81,7 +83,7 @@ def client_project(request, project_id):
 def to_edit(request):
     if not request.user.editor:
         return HttpResponse('get out of here')
-    projects = EditingProject.objects.order_by('submit_date')
+    projects = EditingProject.objects.filter(edit_date__isnull=True).order_by('submit_date')
     context = {
         'projects': projects
     }

@@ -1,7 +1,5 @@
 {% extends 'brevisapp/base.html' %}
 
-{% block title %}{% endblock %}
-
 {% block content %}
 
 <div class="topnav">
@@ -9,58 +7,52 @@
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
       <a href="#">My Account</a>
-      <a href="#">Edit Profile</a>
-      <a href="#">Payment Info</a>
+      <a href="{% url 'brevisapp:submit' %}">Start a New Project</a>
+      <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote</a>
     </div>
   </div>
-  <a class="dropbtn" href="{% url 'brevisapp:index'%}">Home</a>
+  <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
 </div>
 
-<h1>Welcome {{ user }}</h1>
+<h1 class="animated-h1">
+  <span
+     class="txt-rotate"
+     data-period="2000"
+     data-rotate='[ "Hello", "Welcome", "Great to see you", "Howdy" ]'></span>
+  {{ user }}
+</h1>
+
 
 <br/>
-<br/>
-<hr class="black_hr"/>
 
-<div class="project_btns">
-  <div class="project_btn">
-    <a href="{% url 'brevisapp:submit' %}">Start a New Project!</a>
-  </div>
-  <div class="project_btn">
-    <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote!</a>
-  </div>
-  <div class="project_btn">
-  {% if user.editor %}
-    <a href="{% url 'brevisapp:to_edit' %}">Editing Projects</a>
-  {% endif %}
-  </div>
-</div>
-<br/>
-<br/>
-<hr class="black_hr"/>
+
 <div class="project_lists">
-  <div id="current">
-    <h4>Current Projects</h4>
-      {% for project in projects %}
-        {% if not project.final_date %}
-          <a class="left_margin" href="{% url 'brevisapp:client_project' project.id %}">{{ project.name }}</a>
-          {% if project.edit_date %}
-            <span>Your project has been edited.</span>
+  <div class="bookmarks" id="bookmark1">
+    <h4 id="bookmark-head1">Current Projects</h4>
+      <p class="smaller-text">Projects with * have been edited.</p><br/>
+      {% for current_project in current_projects %}
+          <a class="project_name" href="{% url 'brevisapp:client_project' current_project.id %}">{{ current_project.name }}</a>
+          {% if current_project.edit_date %}
+            <span>*</span>
           {% endif %}
-        {% endif %}
       {% endfor %}
 
   </div>
-  <div id="past">
-    <h4>Past Projects</h4>
-    {% for project in projects %}
-      {% if project.final_date %}
-        <a class="left_margin" href="{% url 'brevisapp:client_project' project.id %}">{{ project.name }}</a>
-      {% endif %}
+  <div class="bookmarks" id="bookmark2">
+    <h4 id="bookmark-head2">Past Projects</h4>
+    {% for past_project in past_projects %}
+        <a class="project_name" href="{% url 'brevisapp:client_project' past_project.id %}">{{ past_project.name }}</a>
     {% endfor %}
   </div>
 </div>
 
 
+<div class="project_links">
+  {% if user.editor %}
+  <div class="project_link">
+    <a href="{% url 'brevisapp:to_edit' %}">Start Editing</a>
+  {% endif %}
+  </div>
+</div>
 
 {% endblock %}

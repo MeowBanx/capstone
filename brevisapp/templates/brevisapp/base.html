@@ -5,25 +5,25 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'brevisapp/style.css' %}"/>
     <title>Brevis Edits</title>
-    <link href="https://fonts.googleapis.com/css?family=Fahkwang|Lobster|Playfair+Display|Pompiere|Cormorant+Garamond|Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fahkwang|Lobster|Playfair+Display|Pompiere|Cormorant+Garamond|Montserrat|Special+Elite" rel="stylesheet">
   </head>
 
   <body>
       <header>
         <div class="banner">
           <h1 class="company-name">Brevis Edits</h1>
-          <h4 class="slogan">Quick. Cheap. Brilliant.</h4>
+          <h3 class="slogan">Quick. Cheap. Brilliant.</h3>
         </div>
         <hr/>
       </header>
-      {% block title %}{% endblock %}
       {% block content %}
       {% endblock %}
       <hr/>
       <footer>
         <p>Brevis Edits<br/>2019</p>
       </footer>
-    <script type="text/javascript" src="{% static 'brevisapp/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'brevisapp/script.js' %}">
+    </script>
 
   </body>
 

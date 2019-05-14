@@ -11,15 +11,6 @@ class ClientProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    # @receiver(post_save, sender=User)
-    # def create_client_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         ClientProfile.objects.create(user=instance)
-    #
-    # @receiver(post_save, sender=User)
-    # def save_client_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
-
 class EditorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='editor')
     pending = models.IntegerField(default=0)
@@ -28,14 +19,6 @@ class EditorProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-    # @receiver(post_save, sender=User)
-    # def create_editor_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         EditorProfile.objects.create(user=instance)
-    #
-    # @receiver(post_save, sender=User)
-    # def create_editor_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
 
 class EditingProject(models.Model):
     client = models.ForeignKey(ClientProfile, on_delete=models.CASCADE, related_name='projects')
@@ -68,3 +51,9 @@ class EditingProject(models.Model):
             return "No"
         else:
             return "Yes"
+
+
+class Messages(models.Model):
+    topic = models.ForeignKey(EditingProject, on_delete=models.CASCADE)
+    message = models.TextField(default='')
+    reply = models.TextField(default='')

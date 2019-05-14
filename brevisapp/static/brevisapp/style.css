@@ -1,12 +1,15 @@
 /*======================all pages=================================*/
-/*general font*/
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
 }
 
-/*base banner*/
+h2, h4, form, input, label, button, #output, .project-list, .left_margin {
+  margin-left: 20px;
+}
+
+/*==================BASE============================================*/
 .banner {
   height: 20%;
   width: 100%;
@@ -32,67 +35,40 @@ body, html {
   color: black;
 }
 
+footer {
+  width: 100%;
+  background-color: #B01C0C;
+  margin: 0px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+  height: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+}
+
 hr {
   margin: 0px;
   color: white;
   width: 2px;
 }
 
-/*links on all pages*/
-
-h1, h2, h4, form, input, label, button, #output, .project-list, .left_margin {
-  margin-left: 20px;
-}
-
-a {
-  text-decoration: none;
-  color: red;
-}
-
-
-a:hover {
-  opacity: 0.5;
-}
-
+/*==================GET_A_QUOTE============================================*/
 .smaller-text {
     font-size: 10px;
 }
 
-p {
-  margin: 10px 20px 10px 20px;
 
-}
-
-form {
-  margin-top: 50px;
-  width: 100%;
-}
-
-label {
-  margin: 0px;
-}
-
+/*==================SUBMIT============================================*/
 #proj_name {
   border-top: none;
   border-right: none;
   border-left: none;
 }
 
-.basic-btn {
-  font-size:20px;
-  background-color:#fff;
-  padding:10px;
-  color:#333;
-  border-radius: 10px;
-  transition: 1s;
-  width: auto;
-  margin: 20px 0px 0px 20px;
-}
 
-.basic-btn:hover {
-  opacity: 0.5;
-}
-
+/*===============================LOGIN_PAGE, REGISTER=====================*/
 .submission-input {
   display: flex;
   flex-direction: column;
@@ -106,32 +82,10 @@ label {
   height: auto;
 }
 
-footer {
-  width: 100%;
-  background-color: #B01C0C;
-  margin: 0px;
-  padding: 10px;
-  color: white;
-  text-align: center;
-  margin-top: 20px;
-  height: auto;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-}
-/*=================index=======================================================*/
+/*=================INDEX=======================================================*/
 
-.topnav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  margin: 0;
-  padding: 0;
-}
-
-/*join and login links in index and project links on user_page*/
-.user-btn {
+/* join and login links*/
+.user-btn, .dropbtn {
 	font-size:15px;
 	background-color: #B01C0C;
 	padding: 5px 15px 5px 15px;
@@ -145,30 +99,11 @@ footer {
   font-size: 25px;
 }
 
-.user-btn:hover, .project_btn:hover {
+.user-btn:hover, .project_link:hover {
 		box-shadow: inset 0 0 0 5px #E75343;
     border: solid 3px #fff;
 }
 
-
-
-.project_btn {
-  font-size:1em;
-	padding: 10px 20px 10px 20px;
-  margin: 10px;
-	border-radius: 20px;
-	transition: 1.5s;
-  border: solid 3px black;
-  text-decoration: none;
-  color: black;
-}
-
-.project_btns {
-  display: flex;
-  justify-content: space-around;
-}
-
-/*info boxes on index*/
 
 .info-box-title-r, .info-box-title-l, h4 {
   font-family: 'Lobster', cursive;
@@ -193,12 +128,12 @@ footer {
   margin: 50px auto 0px auto;
 }
 
-#pointer1 {
+#pointer1, #bookmark1 {
   background: red;
   opacity: 0.7;
 }
 
-#pointer2 {
+#pointer2, #bookmark2 {
   background: red;
   opacity: 0.85;
 }
@@ -287,56 +222,6 @@ footer {
   margin-top: 0px;
 }
 
-/*====================== dropdown menu============================================ */
-.dropbtn {
-  padding: 16px;
-  font-size: 30px;
-  border: none;
-  font-family: 'Lobster', cursive;
-  background-color: black;
-  color: white;
-  margin-right: 20px;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #B8B6BC;
-  transition: 1s;
-  transition-timing-function: ease;
-}
-
-
-
-
 
 /* Slideshow container for testimonials */
 .slideshow-container {
@@ -383,29 +268,171 @@ footer {
   background-color: #717171;
 }
 
+/*=====================USER_PAGE===============================================*/
+.project_link {
+  font-size:1em;
+	padding: 10px 20px 10px 20px;
+  margin: 10px;
+	border-radius: 20px;
+	transition: 1.5s;
+  border: solid 3px black;
+  text-decoration: none;
+  color: black;
+}
 
+.project_links {
+  display: flex;
+  justify-content: space-around;
+}
 
+.project_lists {
+  display: flex;
+  justify-content: center;
+}
 
-/* Add an italic font style to all quotes */
-q {
-  font-family: 'Fahkwang', sans-serif;
-  font-style: italic;
-  font-size: 1em;
-  width: 75%
+.animated-h1 {
+  font-family: 'Special Elite', cursive;
+}
+
+.bookmarks {
+  width: 25%;
+  height: 500px;
+  position: relative;
+  margin: 50px 20px 50px 20px;
+}
+
+.project_name {
+  color: black;
+  opacity: 100%;
+  margin-left: 20px;
 }
 
 
+#bookmark-head1 {
+  margin: 0;
+  padding: 10px 10px 0px 10px;
+}
+
+#bookmark-head2 {
+  margin: 0;
+  padding: 10px 10px 30px 10px;
+}
+
+/*====================INDEX, USER_PAGE==============================================*/
+/*dropdown menu*/
+.dropbtn {
+  padding: 16px;
+  font-size: 30px;
+  border: none;
+  font-family: 'Lobster', cursive;
+  background-color: black;
+  color: white;
+  margin-right: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #B8B6BC;
+  transition: 1s;
+  transition-timing-function: ease;
+}
+
+/*navigation bar*/
+.topnav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+/*EDIT_PROJECT, SUBMIT*/
 .form-element {
   margin-top: 10px;
 }
 
 
-.project_lists {
-  display: flex;
-  justify-content: space-around;
+/*USER_PAGE, LOGIN_PAGE, REGISTER*/
+h1 {
+  text-align: center;
+  margin-top: 30px;
 }
 
-.black_hr {
-  width: 2px;
-  color: black;
+/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, INDEX, TO_EDIT, USER_PAGE */
+a {
+  text-decoration: none;
+  color: red;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+
+/*BASE, CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, INDEX, TO_EDIT*/
+p {
+  margin: 10px 20px 10px 20px;
+}
+
+/*CLIENT_PROJECT, EDIT_PROJECT, LOGIN_PAGE, REGISTER, SUBMIT*/
+form {
+  margin-top: 30px;
+  width: 100%;
+}
+
+/*EDIT_PROJECT, GET_A_QUOTE, SUBMIT*/
+label {
+  margin: 0px;
+}
+
+/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, LOGIN_PAGE, REGISTER, SUBMIT*/
+.basic-btn {
+  font-size:20px;
+  background-color:#fff;
+  padding:10px;
+  color:#333;
+  border-radius: 10px;
+  transition: 1s;
+  width: auto;
+  margin: 20px 0px 0px 20px;
+}
+
+.basic-btn:hover {
+  opacity: 0.5;
+}
+
+/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, TO_EDIT, USER_PAGE */
+h4 {
+  text-align: center;
 }

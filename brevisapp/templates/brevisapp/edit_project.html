@@ -1,24 +1,21 @@
 <!--This is the page an editor is taken to when working on a project-->
 
 {% extends 'brevisapp/base.html' %}
-
-<!--project name and due date-->
-{% block title %}
-<h4>{{ project.name }}</h4>
-{% if final_date == null %}
-  <p>Due: {{ project.due_date_str }}</p>
-{% endif %}
-{% endblock %}
-
-<!--original submitted text or file with description-->
 {% block content %}
+<!--project name and due date-->
+<h2>{{ project.name }}</h2>
+{% if final_date == null %}
+  <p><b>Due:</b> {{ project.due_date_str }}</p>
+{% endif %}
+<!--original submitted text or file with description-->
+
 {% if project.orig_text %}
-  <p>Submitted text: {{ project.orig_text }}</p>
+  <p><b>Submitted text:</b> {{ project.orig_text }}</p>
 {% endif %}
 {% if project.orig_file %}
-  <span>Original file: </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+  <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
 {% endif %}
-<p>Description: {{ project.description }}</p>
+<p><b>Description:</b> {{ project.description }}</p>
 
 <!--form for editor to upload edited text or file-->
 <form action="{% url 'brevisapp:submit_edit' project.id %}" method="post" enctype="multipart/form-data">

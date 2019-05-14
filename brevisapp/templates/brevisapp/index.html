@@ -1,6 +1,5 @@
 {% extends 'brevisapp/base.html' %}
 
-{% block title %}{% endblock %}
 
 {% block content %}
 <div class="topnav">
@@ -16,11 +15,11 @@
 
 
   <div class="login">
-    <a class="user-btn" id="join" href="{% url 'brevisapp:registration_page' %}">Join</a>
-    <a class="user-btn" id="login" href="{% url 'brevisapp:login_page' %}">Login</a>
+    <a class="user-btn" href="{% url 'brevisapp:registration_page' %}">Join</a>
+    <a class="user-btn" href="{% url 'brevisapp:login_page' %}">Login</a>
   </div>
 </div>
-<div id="text-boxes">
+<div>
   <div class="pointers" id="pointer1">
     <h2 class="info-box-title-r">...who we are</h2>
       <p class="info-box-text-r">Brevis was started by an editor with a dream. She dreamed of menus with no typos, perfectly spelled Tweets, and signs without randomly inserted apostrophes. With that, Brevis was born. </p>
@@ -41,27 +40,21 @@
 
   <!-- Full-width slides/quotes -->
   <div class="testimonials">
-    <div class="talkbubble">
       <br/>
       <span class="quotes">I love knowing that my business's social media posts have been professionally edited. It's one less thing for me to worry about!</span>
     <p class="name">— Shannon L.</p>
-    </div>
   </div>
 
   <div class="testimonials">
-    <div class="talkbubble">
       <br/>
       <span class="quotes">Brevis is the easiest part of my day as a restaurant owner. They've edited everything from my menu to the sign outside my door. They are as helpful and kind as they are fast, and I don't know what I would do without them.</span>
     <p class="name">— Asher W.</p>
-    </div>
   </div>
 
   <div class="testimonials">
-    <div class="talkbubble">
       <br/>
       <span class="quotes">I'm a writer, and I don't like to take time to edit when my creative juices are flowing. Brevis is an awesome option when I need help on the fly.</span>
     <p class="name">— Keaton K.</p>
-    </div>
   </div>
 
   <!-- Dots/bullets/indicators -->

@@ -1,10 +1,24 @@
 {% extends 'brevisapp/base.html' %}
 
-{% block title %}
-  <h2>New Project Submission</h2>
-{% endblock %}
-
 {% block content %}
+
+
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">My Account</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Payment Info</a>
+    </div>
+  </div>
+  <div class="home_logout">
+    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
+    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+  </div>
+</div>
+
+  <h2>New Project Submission</h2>
 
 <div class="form">
   <form action="{% url 'brevisapp:new_project' %}" method="post" enctype="multipart/form-data">

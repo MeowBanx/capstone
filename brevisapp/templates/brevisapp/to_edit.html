@@ -2,16 +2,17 @@
 
 {% block content %}
 
-<h4>Available Projects</h4>
-{% for project in projects %}
-    {% if final_date == null %}
-        <div class="project-list">
-          <a href="{% url 'brevisapp:edit_project' project.id %}">{{ project.name }}</a><br/>
-          <span>Due date: {{ project.due_date_str }}</span>
-        </div>
-    {% else %}
-      <p>There are no available projects at this time.</p>
-    {% endif %}
-{% endfor %}
+<h2>Available Projects</h2>
 
+{% if projects %}
+  {% for project in projects %}
+    <div class="project-list">
+      <a href="{% url 'brevisapp:edit_project' project.id %}">{{ project.name }}</a><br/>
+      <span>Due date: {{ project.due_date_str }}</span>
+    </div>
+
+    {% endfor %}
+{% else %}
+  <p>There are no available projects at this time.</p>
+{% endif %}
 {% endblock %}
