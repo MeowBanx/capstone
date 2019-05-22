@@ -1,18 +1,42 @@
 {% extends 'brevisapp/base.html' %}
 
 {% block content %}
-
-<h2>Available Projects</h2>
-
-{% if projects %}
-  {% for project in projects %}
-    <div class="project-list">
-      <a href="{% url 'brevisapp:edit_project' project.id %}">{{ project.name }}</a><br/>
-      <span>Due date: {{ project.due_date_str }}</span>
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">My Account</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Payment Info</a>
     </div>
+  </div>
+  <div class="home_logout">
+    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
+    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+  </div>
+</div>
+<div class="page_body">
 
+  <h2>Available Projects</h2>
+  {% if projects %}
+    {% for project in projects %}
+      <div class="project-list">
+        <a href="{% url 'brevisapp:edit_project' project.id %}">{{ project.name }}</a><br/>
+        <span>Due date: {{ project.due_date_str }}</span><br/><br/>
+      </div>
     {% endfor %}
-{% else %}
-  <p>There are no available projects at this time.</p>
-{% endif %}
+  {% else %}
+    <p>There are no available projects at this time.</p>
+  {% endif %}
+  <br/>
+  {% if projects_with_questions %}
+    <h2>Client Questions</h2>
+      {% for project_with_question in projects_with_questions %}
+        <div class="project-list">
+          <a href="{% url 'brevisapp:edit_project' project_with_question.id %}">{{ project_with_question.name }}</a><br/>
+          <span>Due date: {{ project_with_question.due_date_str }}</span>
+        </div>
+      {% endfor %}
+  {% endif %}
+</div>
 {% endblock %}

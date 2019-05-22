@@ -2,37 +2,72 @@
 
 {% extends 'brevisapp/base.html' %}
 {% block content %}
-<!--project name and due date-->
-<h2>{{ project.name }}</h2>
-{% if final_date == null %}
-  <p><b>Due:</b> {{ project.due_date_str }}</p>
-{% endif %}
-<!--original submitted text or file with description-->
-
-{% if project.orig_text %}
-  <p><b>Submitted text:</b> {{ project.orig_text }}</p>
-{% endif %}
-{% if project.orig_file %}
-  <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
-{% endif %}
-<p><b>Description:</b> {{ project.description }}</p>
-
-<!--form for editor to upload edited text or file-->
-<form action="{% url 'brevisapp:submit_edit' project.id %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
+<div class="page_body">
+  <!--project name and due date-->
+  <h2>{{ project.name }}</h2>
+  {% if final_date == null %}
+    <p><b>Due:</b> {{ project.due_date_str }}</p>
+  {% endif %}
+  <!--original submitted text or file with description-->
   {% if project.orig_text %}
-  <div class="form-element">
-    <label for="edit_text">Paste the edited text here.</label></br>
-    <textarea type="text" id="edit_text" name="edit_text" rows="15" cols="100%"></textarea><br/>
-  </div>
+    <p><b>Submitted text:</b> {{ project.orig_text }}</p>
   {% endif %}
   {% if project.orig_file %}
-  <div class="form-element">
-    <label for="edit_file">Upload the edited file here.</label>
-    <input type="file" id="edit_file" name="edit_file"/><br/>
-  </div>
+    <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
   {% endif %}
-  <button class="basic-btn" type="submit">Submit</button>
-</form>
+  <p><b>Description:</b> {{ project.description }}</p>
+  <!--edited text or file if the client asked a question-->
+  {% if project.edit_text %}
+    <p><b>Edited text:</b> {{ project.edit_text }}</p>
+  {% endif %}
+  {% if project.edit_file %}
+    <span><b>Edited file:</b> </span><a href="{{ project.edit_file.url }}">{{project.name}}</a>
+  {% endif %}
+  <!--form for editor to upload edited text or file if there have been no previous edits-->
+  {% if project.messages.count == 0 %}
+    <form action="{% url 'brevisapp:submit_edit' project.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        {% if project.orig_text %}
+        <div class="form-element">
+          <label for="edit_text">Paste the edited text here.</label></br>
+          <textarea type="text" id="edit_text" name="edit_text" rows="15" cols="100%"></textarea><br/>
+        </div>
+        {% endif %}
+        {% if project.orig_file %}
+        <div class="form-element">
+          <label for="edit_file">Upload the edited file here.</label>
+          <input type="file" id="edit_file" name="edit_file"/><br/>
+        </div>
+        {% endif %}
+      <button class="basic-btn" type="submit">Submit</button>
+    </form>
+  {% endif %}
 
+  <!--form for editor to respond to client question and upload edited text or file if there have been previous edits-->
+  {% if project.messages.count > 0 %}
+    {% for message in messages%}
+      <p><b>Message from:</b> {{message.user}}</p>
+      <p><b>Message sent:</b> {{message.timestamp}}</p>
+      <p><b>Message:</b> {{message.text}}
+    {% endfor %}
+    <form action="{% url 'brevisapp:submit_answer' project.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="question_for_editor">Please respond to the client's question and update your edit accordingly below.</label><br/>
+      <textarea class="wide-input" name="question_for_editor" id="question_for_editor" rows="15" cols="100%" required></textarea><br/>
+      {% if project.edit_text %}
+      <div class="form-element">
+        <label for="edit_text">Paste the edited text here.</label></br>
+        <textarea type="text" id="edit_text" name="edit_text" rows="15" cols="100%" required></textarea><br/>
+      </div>
+      {% endif %}
+      {% if project.edit_file %}
+      <div class="form-element">
+        <label for="edit_file">Upload the edited file here.</label>
+        <input type="file" id="edit_file" name="edit_file"/><br/>
+      </div>
+      {% endif %}
+      <button id="ask_the_editor" class="basic-btn" type="submit">Send</button>
+    </form>
+  {% endif %}
+</div>
 {% endblock %}

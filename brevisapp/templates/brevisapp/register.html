@@ -1,23 +1,21 @@
 {% extends 'brevisapp/base.html' %}
 
 {% block content %}
+<div class="page_body">
 
-<h1>Register</h1>
-<form action="{% url 'brevisapp:register_user' %}" method="post">
+  <h1>Register</h1>
+  <form action="{% url 'brevisapp:register_user' %}" method="post">
   {% csrf_token %}
-  <div class="basic-form">
-    <div class="submission-input">
-      <input class="basic-input" type="text" name="username" placeholder="username"/>
-      <input class="basic-input" type="text" name="first_name" placeholder="first name"/>
-      <input class="basic-input" type="text" name="last_name" placeholder="last name"/>
-      <input class="basic-input" type="text" name="email" placeholder="email address"/>
-      <input class="basic-input" type="password" name="password" placeholder="password"/>
-    </div>
+    <div class="basic-form">
+      <div class="submission-input">
+        <input class="basic-input" type="text" name="username" placeholder="username"/>
+        <input class="basic-input" type="text" name="first_name" placeholder="first name"/>
+        <input class="basic-input" type="text" name="last_name" placeholder="last name"/>
+        <input class="basic-input" type="text" name="email" placeholder="email address"/>
+        <input class="basic-input" type="password" name="password" placeholder="password"/>
+      </div>
     <button class="basic-btn" type="submit">Sign up!</button>
-  </div>
-
-
-</form>
-
-
+    </div>
+  </form>
+</div>
 {% endblock %}

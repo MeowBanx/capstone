@@ -2,57 +2,59 @@
 
 {% block content %}
 
-
 <div class="topnav">
   <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="#">My Account</a>
-      <a href="#">Edit Profile</a>
-      <a href="#">Payment Info</a>
+      <a href="{% url 'brevisapp:login_page' %}">Login</a>
+      <a href="{% url 'brevisapp:FAQs' %}">FAQs</a>
+      <a href="{% url 'brevisapp:registration_page' %}">Register</a>
     </div>
   </div>
   <div class="home_logout">
-    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
-    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+    <a class="dropbtn" href="{% url 'brevisapp:index'%}">Main Page</a>
   </div>
 </div>
+<div class="page_body">
 
-<h4>Pricing</h4>
+  <h4>Pricing</h4>
 
-<h2>How it works</h2>
-  <p>Prices are set per word. Rush projects (4-hour turnaround) are charged at 4¢ per word. Regular projects (48-hour turnaround) are charged at 2¢ per word.</p>
+  <h2>How it works</h2>
+    <p>Prices are set per word. Rush projects (4-hour turnaround) are limited to projects that are 1,000 words or fewer and are charged at 4¢ per word. Regular projects (two-day turnaround) are limited to projects that are 5,000 words or fewer and are charged at 2¢ per word. If you have a longer project, please <a id="emailMe" href="mailto:kathrynhbanks@gmail.com">email us</a> to discuss pricing and turnaround time.</p>
 
-  <h2>Get a quote</h2>
-    <label class="left_margin" for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
-    <textarea class="left_margin" type="text" id="text_for_quote" rows="15" cols="100%"/></textarea><br/>
-    <p class="smaller-text">Please note that this quote is not binding and may change based on turnaround time and word count upon project submission.</p>
-    <button class="basic-btn" id="submitbtn">Submit</button><br/><br/>
-    <div id="output">
-    <span>Regular cost: <br/>Rush cost:</span></div>
+    <h2>Get a quote</h2>
+      <label for="text_for_quote">Copy your text and paste it in the box below.</label><br/>
+      <textarea type="text" id="text_for_quote" rows="15" cols="100%"></textarea><br/>
+      <p class="smaller-text">Please note that this quote is not binding and may change based on turnaround time and word count upon project submission.</p>
+      <button class="basic-btn" id="submitbtn">Submit</button><br/><br/>
+      <div id="output"></div>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    let text_for_quote = document.querySelector('#text_for_quote')
-    let output = document.querySelector('#output')
-    let submitbtn = document.querySelector('#submitbtn')
+      let text_for_quote = document.querySelector('#text_for_quote')
+      let output = document.querySelector('#output')
+      let submitbtn = document.querySelector('#submitbtn')
 
-    function countWords(user_text) {
-      return user_text.trim().split(/\s+/).length;
-    }
+      function countWords(user_text) {
+        return user_text.trim().split(/\s+/).length;
+      }
 
-    submitbtn.onclick = function() {
-      let regular_cost = countWords(text_for_quote.value)*0.02
-      let rush_cost = countWords(text_for_quote.value)*0.04
-      output.innerText = "Regular cost: " + regular_cost + '\n' + "Rush cost: " + rush_cost
-    }
+      submitbtn.onclick = function() {
+        let regular_cost = countWords(text_for_quote.value)*0.02
+        let rush_cost = countWords(text_for_quote.value)*0.04
+        reg = regular_cost.toFixed(2)
+        rush = rush_cost.toFixed(2)
+        if (countWords(text_for_quote.value) >= 5000) {
+          output.innerText = "This project is " + countWords(text_for_quote.value) + " words. Projects over 5,000 words are ineligible for Brevis pricing and turnaround time. Please follow the email link above for a custom quote on your project."
+        } else if (countWords(text_for_quote.value) >= 1000) {
+          output.innerText = "Regular cost: $" + reg + '\n' + "This project is " + countWords(text_for_quote.value) + " words. Projects over 1000 words are ineligible for rush turnaround time."
+        } else {
+          output.innerText = "This project is " + countWords(text_for_quote.value) + " words." + '\n' + "Regular cost: $" + reg + '\n' + "Rush cost: $" + rush
+        }
+      }
 
-
-  </script>
-  <br/>
-  <br/>
-
-</body>
-
-
+    </script>
+    <br/>
+    <br/>
+</div>
 {% endblock %}

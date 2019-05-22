@@ -1,57 +1,99 @@
 {% extends 'brevisapp/base.html' %}
 
 {% block content %}
+<!--menu bar----------------------------------------------------------->
 <div class="topnav">
   <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="#">My Account</a>
-      <a href="#">Edit Profile</a>
-      <a href="#">Payment Info</a>
+      <a href="{% url 'brevisapp:my_account' %}">My Account</a>
+      <a href="{% url 'brevisapp:submit' %}">Start a New Project</a>
+      <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote</a>
+      {% if user.editor %}
+        <a href="{% url 'brevisapp:to_edit' %}">Start Editing</a>
+      {% endif %}
     </div>
   </div>
   <div class="home_logout">
-    <a class="dropbtn" href="{% url 'brevisapp:user_page'%}">Home</a>
-    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+    <a class="neighbor_btns" href="{% url 'brevisapp:user_page'%}">Home</a>
+    <a class="neighbor_btns" href="{% url 'brevisapp:logout_user' %}">Logout</a>
   </div>
 </div>
-
-<h2>{{ project.name }}</h2>
-{% if final_date == null %}
-  <p><b>Due:</b> {{ project.due_date_str }}</p>
-{% endif %}
-
-{% if project.orig_text %}
-  <p><b>Submitted text:</b> {{ project.orig_text }}</p>
-{% endif %}
-{% if project.orig_file %}
-  <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
-{% endif %}
-<p><b>Description:</b> {{ project.description }}</p>
-<p><b>Rush?</b> {{ project.turnaround_time }}</p>
-<p><b>Date submitted:</b> {{ project.submit_date }}</p>
-{% if project.edit_text %}
-  <p><b>Edited text:</b> {{ project.edit_text }}</p>
-{% endif %}
-{% if project.edit_file %}
-
-
-  <span><b>Edited file:</b> </span>
-  <a href="{{ project.edit_file.url }}">{{project.name}}</a>
-{% endif %}
-{% if project.edit_date %}
-  <p><b>Date edited:</b> {{ project.edit_date }}</p>
-  {% if not project.final_date %}
-    <form action="{% url 'brevisapp:approve_edit' project.id %}" method="post">
-      {% csrf_token %}
-      <button class="basic-btn" type="submit">Approve Edits</button>
-    <label class="left_margin" for="question_for_editor">Want to ask a question or request a change? Please provide as much detail as possible for your editor below.</label><br/>
-    <textarea class="left_margin" type="text" id="question_for_editor" rows="15" cols="100%"/></textarea><br/>
-    <button id="ask_the_editor" class="basic-btn" type="submit">Ask a question or Request a Change</button>
-    <p id="confirm"></p>
+<div class="page_body">
+  <!--Basic project information including project name, due/final date, submitted text/file, description, turnaround, and submission date-->
+  <h2>{{ project.name }}</h2>
+  {% if final_date == null %}
+    <p><b>Due:</b> {{ project.due_date_str }}</p>
   {% endif %}
-{% endif %}
-{% if project.final_date %}
-  <p><b>Date finalized:</b> {{ project.final_date }}</p>
-{% endif %}
+  {% if project.orig_text %}
+    <p><b>Submitted text:</b> {{ project.orig_text }}</p>
+  {% endif %}
+  {% if project.orig_file %}
+    <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+  {% endif %}
+  <p><b>Description:</b> {{ project.description }}</p>
+  <p><b>Rush?</b> {{ project.turnaround_time }}</p>
+  <p><b>Date submitted:</b> {{ project.submit_date }}</p>
+
+  <!--Display edited text/file and date if the user did not submit a question to the editor-->
+  {% if project.messages.count == 0 %}
+    {% if project.edit_text %}
+      <p><b>Edited text:</b> {{ project.edit_text }}</p>
+    {% endif %}
+    {% if project.edit_file %}
+      <span><b>Edited file:</b> </span>
+      <a href="{{ project.edit_file.url }}">{{project.name}}</a>
+    {% endif %}
+    {% if project.edit_date %}
+      <p><b>Date edited:</b> {{ project.edit_date }}</p><br/><br/>
+      {% if not project.final_date %}
+        <form action="{% url 'brevisapp:approve_edit' project.id %}" method="post">
+          {% csrf_token %}
+          <button class="basic-btn" type="submit">Approve Edits</button><br/>
+        </form>
+        <form action="{% url 'brevisapp:submit_question' project.id %}" method="post">
+          {% csrf_token %}
+          <label for="question_for_editor">Want to ask a question or request a change? Please provide as much detail as possible for your editor below.</label><br/>
+          <textarea class="wide-input" name="question_for_editor" id="question_for_editor" rows="15" cols="100%"></textarea><br/>
+          <button id="ask_the_editor" class="basic-btn" type="submit">Send</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  <!--If there are messages, display messages and dates between client and editor-->
+  {% if project.messages.count > 0 %}
+    <h2>Messages</h2>
+    {% for message in messages %}
+      <p><b>Message from:</b> {{message.user}}</p>
+      <p><b>Message sent:</b> {{message.timestamp}}</p>
+      <p><b>Message:</b> {{message.text}}</p><br/><br/>
+    {% endfor %}
+    <!--Display edited text/file and dates-->
+    {% if project.edit_text %}
+      <p><b>Edited text:</b> {{ project.edit_text }}</p>
+    {% endif %}
+    {% if project.edit_file %}
+      <span><b>Edited file:</b> </span>
+      <a href="{{ project.edit_file.url }}">{{project.name}}</a>
+    {% endif %}
+    <p><b>Date edited:</b> {{ project.edit_date }}</p><br/><br/>
+    {% if not project.final_date %}
+      <form action="{% url 'brevisapp:approve_edit' project.id %}" method="post">
+        {% csrf_token %}
+        <button class="basic-btn" type="submit">Approve Edits</button><br/>
+      </form>
+      <form action="{% url 'brevisapp:submit_question' project.id %}" method="post">
+        {% csrf_token %}
+        <label for="question_for_editor">Want to ask a question or request a change? Please provide as much detail as possible for your editor below.</label><br/>
+        <textarea class="wide-input" name="question_for_editor" id="question_for_editor" rows="15" cols="100%"></textarea><br/>
+        <button id="ask_the_editor" class="basic-btn" type="submit">Send</button>
+      </form>
+    {% endif %}
+  {% endif %}
+
+  {% if project.final_date %}
+    <p><b>Date finalized:</b> {{ project.final_date }}</p>
+  {% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block content %}
+
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="{% url 'brevisapp:get_a_quote' %}">Pricing</a>
+      <a href="{% url 'brevisapp:FAQs' %}">FAQs</a>
+      <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote</a>
+    </div>
+  </div>
+  <div class="home_logout">
+    <a class="dropbtn" href="{% url 'brevisapp:index'%}">Home</a>
+  </div>
+</div>
+<div class="page_body">
+
+  <h4>FAQs</h4>
+    <p><b>How much does Brevis cost?</b></p>
+      <p>We aim to keep our prices shockingly low. Prices are set per word. Rush projects (four-hour turnaround) are charged at 4¢ per word. Regular projects (two-day turnaround) are charged at 2¢ per word. Click <a href="{% url 'brevisapp:get_a_quote' %}">here</a> for a quote.</p><br/>
+    <p><b>Who is actually editing my project?</b></p>
+      <p>Currently, Brevis is run by its founder and editor, Kat. She has over a decade of professional editing experience as well as a master's degree in publishing/writing from Portland State University. As we grow, we plan to expand to a larger team of editors to ensure we can keep up with client demand. These editors will be vetted carefully to ensure that our clients get the best in quality every time on every project, guaranteed. </p><br/>
+    <p><b>Do you offer a 100% satisfaction guarantee?</b></p>
+      <p>YES! We want to make sure you're happy with our work. We offer open communication with your editor throughout your project completion process, and if we can't come to an agreement, we'll refund your money.</p><br/>
+    <p><b>Is there a word limit?</b></p>
+      <p>In general, our specialty is short edits with a fast turnaround time. For rush projects, the word count limit is 1,000 words. For regular projects, the word count limit is 5,000 words. If you have a longer project, please <a id="emailMe" href="mailto:kathrynhbanks@gmail.com">email us</a> to discuss pricing and turnaround time.</p><br/>
+    <p><b>Can I work for you?</b></p>
+      <p>If you would like to apply to be an editor, please <a id="emailMe" href="mailto:kathrynhbanks@gmail.com">email us</a> your resume and a short description of why you're interested in working for Brevis. We are hoping to expand our editing team shortly.</p><br/>
+
+</div>
+{% endblock %}

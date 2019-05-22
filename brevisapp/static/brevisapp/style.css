@@ -1,21 +1,67 @@
-/*======================all pages=================================*/
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
+/* ========================All pages ===================================*/
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-h2, h4, form, input, label, button, #output, .project-list, .left_margin {
+#main-wrapper {
+  flex: 1 0 auto;
+}
+
+* {
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+}
+
+#body {
+  height: 100%;
+  overflow: auto;
+}
+
+.page_body {
   margin-left: 20px;
 }
 
-/*==================BASE============================================*/
-.banner {
-  height: 20%;
+*:before, *:after {
+ box-sizing: border-box;
+}
+
+.main-wrapper {
+ min-height: 100%;
+}
+
+p {
+  margin: 10px 20px 10px 0px;
+}
+
+/*links*/
+a {
+  text-decoration: none;
+  color: red;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+h2 {
+  margin: 20px 0px 20px 0px;
+}
+
+/*=======Base===========================================================*/
+#header {
   width: 100%;
   background-color: #B01C0C;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px 0px 30px 0px;
 }
 
 .company-name {
@@ -28,37 +74,33 @@ h2, h4, form, input, label, button, #output, .project-list, .left_margin {
 }
 
 .slogan {
-  margin: 0px 0px 30px 0px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5em;
   text-align: center;
   color: black;
+  margin: 0px;
 }
 
-footer {
+#footer {
   width: 100%;
   background-color: #B01C0C;
   margin: 0px;
-  padding: 10px;
+  height: 80px;
   color: white;
   text-align: center;
-  margin-top: 20px;
-  height: auto;
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
 }
+
+/* #footer-text {
+  margin: 20px;
+} */
 
 hr {
   margin: 0px;
   color: white;
   width: 2px;
 }
-
-/*==================GET_A_QUOTE============================================*/
-.smaller-text {
-    font-size: 10px;
-}
-
 
 /*==================SUBMIT============================================*/
 #proj_name {
@@ -67,30 +109,13 @@ hr {
   border-left: none;
 }
 
-
-/*===============================LOGIN_PAGE, REGISTER=====================*/
-.submission-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.basic-input {
-  width: 30%;
-  margin: 10px;
-  font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  height: auto;
-}
-
 /*=================INDEX=======================================================*/
-
 /* join and login links*/
 .user-btn, .dropbtn {
 	font-size:15px;
 	background-color: #B01C0C;
 	padding: 5px 15px 5px 15px;
   margin-right: 10px;
-	border-radius: 20px;
 	transition: 1.5s;
   border: solid 3px white;
   text-decoration: none;
@@ -103,7 +128,6 @@ hr {
 		box-shadow: inset 0 0 0 5px #E75343;
     border: solid 3px #fff;
 }
-
 
 .info-box-title-r, .info-box-title-l, h4 {
   font-family: 'Lobster', cursive;
@@ -143,6 +167,7 @@ hr {
   opacity: 1.0;
   margin-bottom: 50px;
 }
+
 #pointer1:after, #pointer3:after {
   content: "";
   position: absolute;
@@ -154,7 +179,6 @@ hr {
   border-top: 80px solid transparent;
   border-bottom: 80px solid transparent;
   margin: auto;
-
 }
 
 #pointer1:before {
@@ -194,7 +218,6 @@ hr {
   border-top: 80px solid transparent;
   border-bottom: 80px solid transparent;
   margin: auto;
-
 }
 
 #pointer2:before {
@@ -212,16 +235,15 @@ hr {
 
 .info-box-text-r {
   text-align: justify;
-  padding-left: 80px;
-  margin-top: 0px;
+  padding-left: 85px;
+  margin: 0px;
 }
 
 .info-box-text-l {
   text-align: justify;
-  padding-right: 80px;
-  margin-top: 0px;
+  padding-right: 85px;
+  margin: 0px;
 }
-
 
 /* Slideshow container for testimonials */
 .slideshow-container {
@@ -272,7 +294,7 @@ hr {
 .project_link {
   font-size:1em;
 	padding: 10px 20px 10px 20px;
-  margin: 10px;
+  margin: 10px 10px 20px 10px;
 	border-radius: 20px;
 	transition: 1.5s;
   border: solid 3px black;
@@ -292,21 +314,32 @@ hr {
 
 .animated-h1 {
   font-family: 'Special Elite', cursive;
+  margin-top: 80px;
 }
 
 .bookmarks {
-  width: 25%;
+  width: 100%;
   height: 500px;
   position: relative;
-  margin: 50px 20px 50px 20px;
+  margin: 50px 80px 50px 80px;
+}
+
+#bookmark2 {
+  margin-right: 100px;
+}
+
+#asterisk {
+  text-align: center;
 }
 
 .project_name {
+  display: flex;
   color: black;
   opacity: 100%;
-  margin-left: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
-
 
 #bookmark-head1 {
   margin: 0;
@@ -316,6 +349,66 @@ hr {
 #bookmark-head2 {
   margin: 0;
   padding: 10px 10px 30px 10px;
+}
+
+.projects {
+  display: flex;
+  flex-direction: row;
+}
+
+.page_arrow {
+  color: black;
+  font-size: 20px;
+}
+
+#logout_btn {
+  padding-left: 60px
+}
+/*==============CLIENT_PROJECT================================================*/
+.wide-input {
+  margin-top: 10px;
+}
+
+/*==============================CONFIRMATION_PAGE=============================*/
+.confirm_links {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 10px 0px 0px;
+  width: auto;
+}
+
+/*==============================LENGTH_ERROR=============================*/
+.approve_delete_btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+}
+
+.approve_delete_btn {
+  width: auto;
+  margin-bottom: 0px
+}
+
+
+/*======================GET_A_QUOTE, USER_PAGE================================*/
+.smaller-text {
+    font-size: 12px;
+}
+
+/*===============================LOGIN_PAGE, REGISTER=====================*/
+.submission-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.basic-input {
+  width: 30%;
+  margin: 10px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  height: auto;
 }
 
 /*====================INDEX, USER_PAGE==============================================*/
@@ -328,11 +421,36 @@ hr {
   background-color: black;
   color: white;
   margin-right: 20px;
+  width: 100%
 }
 
-.dropdown {
+.dropdown, .home_logout {
   position: relative;
   display: inline-block;
+  width: 15%
+}
+
+.home_logout {
+  display: flex;
+  flex-direction: row;
+  width: 20%
+}
+
+.home_logout:hover .neighbor_btns {
+  background-color: black;
+  transition: 1s;
+  transition-timing-function: ease;
+}
+
+
+.neighbor_btns {
+  font-size: 30px;
+  border: none;
+  font-family: 'Lobster', cursive;
+  background-color: black;
+  color: white;
+  margin: 0px 20px 0px 20px;
+
 }
 
 .dropdown-content {
@@ -377,46 +495,29 @@ hr {
   padding: 0;
 }
 
-/*EDIT_PROJECT, SUBMIT*/
+/*===========================EDIT_PROJECT, SUBMIT=============================*/
 .form-element {
   margin-top: 10px;
 }
 
-
-/*USER_PAGE, LOGIN_PAGE, REGISTER*/
+/*===============================USER_PAGE, LOGIN_PAGE, REGISTER==============*/
 h1 {
   text-align: center;
   margin-top: 30px;
 }
 
-/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, INDEX, TO_EDIT, USER_PAGE */
-a {
-  text-decoration: none;
-  color: red;
-}
-
-a:hover {
-  opacity: 0.5;
-}
-
-
-/*BASE, CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, INDEX, TO_EDIT*/
-p {
-  margin: 10px 20px 10px 20px;
-}
-
-/*CLIENT_PROJECT, EDIT_PROJECT, LOGIN_PAGE, REGISTER, SUBMIT*/
+/*==========CLIENT_PROJECT, EDIT_PROJECT, LOGIN_PAGE, REGISTER, SUBMIT========*/
 form {
   margin-top: 30px;
   width: 100%;
 }
 
-/*EDIT_PROJECT, GET_A_QUOTE, SUBMIT*/
+/*=================EDIT_PROJECT, GET_A_QUOTE, SUBMIT==========================*/
 label {
-  margin: 0px;
+  margin-bottom: 10px;
 }
 
-/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, LOGIN_PAGE, REGISTER, SUBMIT*/
+/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, LOGIN_PAGE, REGISTER, SUBMIT=====*/
 .basic-btn {
   font-size:20px;
   background-color:#fff;
@@ -425,14 +526,56 @@ label {
   border-radius: 10px;
   transition: 1s;
   width: auto;
-  margin: 20px 0px 0px 20px;
+  margin: 20px 0px 20px 0px;
 }
 
 .basic-btn:hover {
   opacity: 0.5;
 }
 
-/*CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, TO_EDIT, USER_PAGE */
+/*======CLIENT_PROJECT, EDIT_PROJECT, GET_A_QUOTE, TO_EDIT, USER_PAGE ========*/
 h4 {
   text-align: center;
+}
+
+/*================================Responsive==================================*/
+@media only screen and (max-width: 768px) {
+  * {
+    max-width: 100%;
+  }
+  .info-box-title-r, .info-box-title-l {
+    font-size: 1em;
+    padding-top: 5px;
+  }
+  .info-box-text-r {
+    text-align: right;
+    padding-left: 80px;
+    font-size: 11px;
+    margin-right: 0px;
+  }
+  .info-box-text-l {
+    text-align: left;
+    padding-right: 80px;
+    font-size: 11px;
+    margin-left: 0px;
+  }
+  .project_lists {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .bookmarks {
+    height: 200px;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+  }
+  .project_name {
+    margin: 0px;
+    display: inline;
+  }
+  .page_body {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }

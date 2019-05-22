@@ -1,5 +1,6 @@
 {% extends 'brevisapp/base.html' %}
 
+{% load static %}
 
 {% block content %}
 <div class="topnav">
@@ -7,9 +8,8 @@
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
       <a href="{% url 'brevisapp:get_a_quote' %}">Pricing</a>
-      <a href="#">FAQs</a>
+      <a href="{% url 'brevisapp:FAQs' %}">FAQs</a>
       <a href="{% url 'brevisapp:get_a_quote' %}">Get a Quote</a>
-      <a href="#">Become an Editor</a>
     </div>
   </div>
 
@@ -19,14 +19,16 @@
     <a class="user-btn" href="{% url 'brevisapp:login_page' %}">Login</a>
   </div>
 </div>
+<div class="page_body">
+
 <div>
   <div class="pointers" id="pointer1">
     <h2 class="info-box-title-r">...who we are</h2>
-      <p class="info-box-text-r">Brevis was started by an editor with a dream. She dreamed of menus with no typos, perfectly spelled Tweets, and signs without randomly inserted apostrophes. With that, Brevis was born. </p>
+      <p class="info-box-text-r">Brevis was started by editors with a dream. We dreamed of menus with no typos, perfectly spelled Tweets, and signs without randomly inserted apostrophes. With that, Brevis was born.</p>
   </div>
   <div class="pointers" id="pointer2">
     <h2 class="info-box-title-l">what we do...</h2>
-      <p class="info-box-text-l">Our goal is to provide fast, accessible, reliable, and error-free editing at such a low cost you can't really afford <ital>not</ital> to use us. Our top-notch editors have been carefully vetted to ensure immaculate results on every project—guaranteed.</p>
+      <p class="info-box-text-l">Our goal is to provide fast, accessible, reliable, and error-free editing at such a low cost you can't afford <i>not</i> to use us. Our top-notch editors have been carefully vetted to ensure immaculate results on every project—guaranteed.</p>
   </div>
   <div class="pointers" id="pointer3">
     <h2 class="info-box-title-r">...how it works</h2>
@@ -34,7 +36,7 @@
   </div>
 </div>
 
-
+</div>
 <!-- Slideshow container -->
 <div class="slideshow-container">
 
@@ -53,7 +55,7 @@
 
   <div class="testimonials">
       <br/>
-      <span class="quotes">I'm a writer, and I don't like to take time to edit when my creative juices are flowing. Brevis is an awesome option when I need help on the fly.</span>
+      <span class="quotes">I'm a writer, and I don't like to take time to edit when my creative juices are flowing. Brevis is an awesome option when I need an editor on the fly.</span>
     <p class="name">— Keaton K.</p>
   </div>
 
@@ -63,5 +65,7 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
   </div>
+
+  <script type="text/javascript" src="{% static 'brevisapp/script.js' %}"></script>
 
 {% endblock %}

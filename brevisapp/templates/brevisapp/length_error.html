@@ -1,0 +1,23 @@
+{% extends 'brevisapp/base.html' %}
+{% block content %}
+<div class="page_body">
+  <h2> We're sorry </h2>
+  {% if project.word_count > 5000 %}
+    <p>Your project is {{ project.word_count }}. Projects over 5000 words are ineligible for Brevis pricing and turnaround time. Please <a id="emailMe" href="mailto:kathrynhbanks@gmail.com">email us</a> to discuss pricing and turnaround time.</p>
+  {% else %}
+    <p>Your project is {{ project.word_count }}. Projects over 1000 words are ineligible for Brevis rush pricing and turnaround time. Please click below if you approve regular (two-day) turnaround time at 2¢ per word.</p>
+    <div class="approve_delete_btns">
+      <form action="{% url 'brevisapp:change_turnaround' project.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="basic-btn">Change to Regular Turnaround</button>
+      </form>
+  {% endif %}
+      <form class="confirm_links" action="{% url 'brevisapp:delete_project' project.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-element">
+          <button class="basic-btn" type="submit">Delete Project</button>
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}

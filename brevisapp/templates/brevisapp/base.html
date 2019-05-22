@@ -3,28 +3,28 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'brevisapp/style.css' %}"/>
     <title>Brevis Edits</title>
     <link href="https://fonts.googleapis.com/css?family=Fahkwang|Lobster|Playfair+Display|Pompiere|Cormorant+Garamond|Montserrat|Special+Elite" rel="stylesheet">
   </head>
-
-  <body>
-      <header>
-        <div class="banner">
-          <h1 class="company-name">Brevis Edits</h1>
-          <h3 class="slogan">Quick. Cheap. Brilliant.</h3>
-        </div>
-        <hr/>
-      </header>
+  <body id="body">
+    <header id="header">
+      <div class="banner">
+        <h1 class="company-name">Brevis Edits</h1>
+        <h3 class="slogan">Quick. Cheap. Brilliant.</h3>
+      </div>
+      <hr/>
+    </header>
+    <div id="main-wrapper">
       {% block content %}
       {% endblock %}
-      <hr/>
-      <footer>
-        <p>Brevis Edits<br/>2019</p>
-      </footer>
-    <script type="text/javascript" src="{% static 'brevisapp/script.js' %}">
-    </script>
+    </div>
 
+    <footer id="footer">
+      <hr/>
+      <p id="footer-text">© Brevis Edits<br/>2019</p>
+    </footer>
   </body>
 
 </html>

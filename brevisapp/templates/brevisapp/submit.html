@@ -17,18 +17,18 @@
     <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
   </div>
 </div>
+<div class="page_body">
 
   <h2>New Project Submission</h2>
 
-<div class="form">
-  <form action="{% url 'brevisapp:new_project' %}" method="post" enctype="multipart/form-data">
+  <form action="{% url 'brevisapp:new_project'%}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-element">
       <label for="proj_name">Name your project:</label>
       <input type="text" id="proj_name" name="proj_name" required/><br/>
     </div>
     <div class="form-element">
-      <label for="orig_text">Submitting text only? Copy it and paste it here.</label></br>
+      <label for="orig_text">Submitting text only? Copy it and paste it here.</label><br/>
       <textarea type="text" id="orig_text" name="orig_text" rows="15" cols="100%"></textarea><br/>
     </div>
     <div class="form-element">
@@ -43,31 +43,9 @@
       <label for="project_turnaround">Check this box for a rush turnaround of four hours.</label>
       <input type="checkbox" id="project_turnaround" name="project_turnaround" value="llama"/><br/>
     </div>
-    </div>
     <div class="form-element">
       <button class = "basic-btn" type="submit">Submit</button>
     </div>
   </form>
 </div>
-
-<!-- <script type="text/javascript">
-
-  let orig_text = document.querySelector('#orig_text')
-  let project_turnaround = document.querySelector('#project_turnaround')
-
-  function countWords(user_text) {
-    return orig_text.trim().split(/\s+/).length;
-  }
-
-  submitbtn.onclick = function() {
-    if (project_turnaround) {
-      cost = countWords(orig_text.value)*0.02
-    }
-    else {
-      cost = countWords(orig_text.value)*0.04
-    }
-
-
-
-</script> -->
 {% endblock %}

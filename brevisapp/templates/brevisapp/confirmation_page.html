@@ -1,0 +1,35 @@
+{% extends 'brevisapp/base.html' %}
+
+{% block content %}
+
+<div class="page_body">
+  <h2>{{ project.name }}</h2>
+  {% if final_date == null %}
+    <p><b>Due:</b> {{ project.due_date_str }}</p>
+  {% endif %}
+  {% if project.orig_text %}
+    <p><b>Submitted text:</b> {{ project.orig_text }}</p>
+  {% endif %}
+  {% if project.orig_file %}
+    <span><b>Original file:</b> </span><a href="{{ project.orig_file.url }}">{{project.name}}</a>
+  {% endif %}
+  <p><b>Description:</b> {{ project.description }}</p>
+  <p><b>Date submitted:</b> {{ project.submit_date }}</p>
+  <p><b>Word count:</b> {{project.word_count}}</p>
+  <p><b>Cost: </b>${{ project.price }}</p>
+  <div class="confirm_links">
+    <form class="confirm_links" action="{% url 'brevisapp:confirmed' project.id %}" method="post">
+      {% csrf_token %}
+      <div class="form-element">
+        <button class = "basic-btn" type="submit">Confirm and Submit</button>
+      </div>
+    </form>
+    <form class="confirm_links" action="{% url 'brevisapp:delete_project' project.id %}" method="post">
+      {% csrf_token %}
+      <div class="form-element">
+        <button class = "basic-btn" type="submit">Delete Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+  {% endblock%}

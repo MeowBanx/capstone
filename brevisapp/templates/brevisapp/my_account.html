@@ -1,0 +1,37 @@
+{% extends 'brevisapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="topnav">
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <a href="#">My Account</a>
+      <a href="{% url 'brevisapp:submit' %}">Start a New Project</a>
+      {% if user.editor %}
+        <a href="{% url 'brevisapp:to_edit' %}">Start Editing</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="dropdown">
+    <a class="dropbtn" href="{% url 'brevisapp:logout_user' %}">Logout</a>
+  </div>
+</div>
+<div class="page_body">
+
+  <h1 class="animated-h1">
+    <span
+       class="txt-rotate"
+       data-period="2000"
+       data-rotate='[ "Hello", "Welcome", "Great to see you", "Howdy" ]'></span>
+    {{ client.user }}
+  </h1>
+  <div>
+    <p>Account Credits: {{ client.credits }}</p>
+    <p>Brevis projects: {{ projects.count }}</p>
+  </div>
+</div>
+  <script type="text/javascript" src="{% static 'brevisapp/script.js' %}"></script>
+
+  {% endblock %}

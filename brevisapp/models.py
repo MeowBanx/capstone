@@ -11,6 +11,8 @@ class ClientProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+
 class EditorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='editor')
     pending = models.IntegerField(default=0)
@@ -19,6 +21,16 @@ class EditorProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+
+class Message(models.Model):
+    editingproject = models.ForeignKey('EditingProject', on_delete=models.CASCADE, related_name='messages')
+    text = models.TextField(default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
 
 class EditingProject(models.Model):
     client = models.ForeignKey(ClientProfile, on_delete=models.CASCADE, related_name='projects')
@@ -33,7 +45,10 @@ class EditingProject(models.Model):
     edit_text = models.TextField(null=True, blank=True)
     edit_date = models.DateTimeField(null=True, blank=True)
     final_date = models.DateTimeField(null=True, blank=True)
-    price = models.IntegerField(null=True, blank=True)
+    word_count = models.IntegerField(null=True, blank=True)
+    price = models.FloatField(null=True, blank=True)
+    submitted = models.BooleanField(default='False')
+
 
     def __str__(self):
         return self.client.user.username + ' - ' + self.name
@@ -51,9 +66,3 @@ class EditingProject(models.Model):
             return "No"
         else:
             return "Yes"
-
-
-class Messages(models.Model):
-    topic = models.ForeignKey(EditingProject, on_delete=models.CASCADE)
-    message = models.TextField(default='')
-    reply = models.TextField(default='')

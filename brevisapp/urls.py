@@ -18,4 +18,13 @@ urlpatterns = [
     path('<int:project_id>/submit_edit/', views.submit_edit, name='submit_edit'),
     path('get_a_quote/', views.get_a_quote, name='get_a_quote'),
     path('<int:project_id>/approve_edit/', views.approve_edit, name='approve_edit'),
+    path('<int:project_id>/confirmation_page/', views.confirmation_page, name='confirmation_page'),
+    path('<int:project_id>/confirmed/', views.confirmed, name='confirmed'),
+    path('<int:project_id>/delete_project/', views.delete_project, name='delete_project'),
+    path('<int:project_id>/submit_question/', views.submit_question, name='submit_question'),
+    path('<int:project_id>/submit_answer/', views.submit_answer, name='submit_answer'),
+    path('FAQs/', views.FAQs, name='FAQs'),
+    path('<int:project_id>/length_error/', views.length_error, name='length_error'),
+    path('<int:project_id>/change_turnaround/', views.change_turnaround, name='change_turnaround'),
+    path('my_account/', views.my_account, name='my_account'),
 ]
